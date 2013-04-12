@@ -18,10 +18,11 @@ class Tree(Page):
     _root_item_locator = (By.XPATH, "tr")
     _sub_item_locator = (By.XPATH, "following-sibling::*")
     
-    def __init__(self,setup,root_element,parent = None):
+    def __init__(self,setup,root_element,parent = None, item_class = Tree):
         Page.__init__(self, setup)
         self._root_element = root_element
         self._parent = parent
+        self.item_class = item_class
         
     @property
     def root(self):
@@ -29,7 +30,7 @@ class Tree(Page):
         
     @property
     def children(self):
-        return [Tree(self.testsetup, web_element, self)
+        return [self._item_class(self.testsetup, web_element, self, self._item_class)
                 for web_element in self.root.find_elements(*self._sub_item_locator)]
     
     @property
@@ -47,4 +48,7 @@ class Tree(Page):
         
     def is_displayed(self):
         return self._root_element.is_displayed()
-    
+   
+    #def find_child_by_name(self, name):
+    #    for child in children:
+    #      return child if child.
