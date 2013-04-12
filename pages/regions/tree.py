@@ -8,6 +8,7 @@ Created on Mar 7, 2013
 
 from pages.page import Page
 from selenium.webdriver.common.by import By
+import sys, os
 
 class Tree(Page):
     '''
@@ -47,4 +48,14 @@ class Tree(Page):
         
     def is_displayed(self):
         return self._root_element.is_displayed()
-    
+   
+    def find_node_by_name(self, name):
+        if self.name == name:
+            return self
+        queue = self.children
+        while child = queue.pop(0):
+            sys.stdout.write("xxxxxxxxxxxxx %s \n" % child.name)
+            if child.name == name:
+                return child
+            else
+                queue += child.children
