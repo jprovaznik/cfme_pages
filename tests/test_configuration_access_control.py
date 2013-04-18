@@ -7,7 +7,7 @@ import time
 from unittestzero import Assert
 
 @pytest.mark.nondestructive
-class TestSettings:
+class TestConfigurationAccessControl:
     def test_add_new_role(self, mozwebqa, home_page_logged_in):
         home_pg = home_page_logged_in
         config_pg = home_pg.header.site_navigation_menu("Configuration").sub_navigation_menu("Configuration").click()

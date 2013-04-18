@@ -1,15 +1,7 @@
-'''
-Created on Mar 7, 2013
-
-@author: bcrochet
-'''
-
 # -*- coding: utf-8 -*-
 
 from pages.page import Page
 from selenium.webdriver.common.by import By
-import re
-import sys
 
 class Tree(Page):
     '''
@@ -20,10 +12,9 @@ class Tree(Page):
     _root_item_locator = (By.XPATH, "tr")
     _sub_item_locator = (By.XPATH, "following-sibling::*")
     
-    def __init__(self,setup,root_element,parent = None):
+    def __init__(self,setup,root_element):
         Page.__init__(self, setup)
         self._root_element = root_element
-        self._parent = parent
         
     @property
     def root(self):
